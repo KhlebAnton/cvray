@@ -136,6 +136,7 @@ input[type='search']:focus {
     scrollbar-color: var(--main-peach) var(--light-bg);
     padding-right: 6px;
     border-radius: 10px;
+    opacity: 1;
 }
 
 
@@ -149,6 +150,7 @@ input[type='search']:focus {
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
     background: var(--main-peach);
+    opacity: 1;
     border-radius: 6px;
 }
 
