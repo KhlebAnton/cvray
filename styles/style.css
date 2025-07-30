@@ -75,6 +75,8 @@ input {
     font-size: 16px;
     line-height: 20px;
     color: var(--dark-black);
+    background-color: transparent;
+    border-radius: 0;
 
 }
 input[type='text'],
