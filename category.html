@@ -88,14 +88,69 @@
     <nav class="breadcrumbs container">
         <a href="#">Главная</a>
         <a href="#">Поиск</a>
+        <a href="#">Цветочные композиции</a>
     </nav>
     <main class="main">
 
-        <section class="section_search">
+        <section class="section_category">
             <div class="container">
-                <h1 class="search_title section_title">
-                    Результаты поиска по запросу: <span class="search-item-name">розы красные</span>
+                <h1>
+                    Цветочные композиции
                 </h1>
+                <div class="product-filter__container">
+                    <div class="product-filter__tab-container custom-scrollbar">
+                        <div class="product-filter__tab">
+                            Корзины
+                        </div>
+                        <div class="product-filter__tab">
+                            Ящики
+                        </div>
+                        <div class="product-filter__tab is-active">
+                            Категория
+                        </div>
+                        <div class="product-filter__tab">
+                            Композиции
+                        </div>
+                    </div>
+                    <div class="product-filter__btn-container">
+                        <div class="btn btn_square btn--filter"></div>
+                        <div class="dropdown-wrapper">
+                            <div class="btn btn_square btn--dropdown"></div>
+
+                            <div class="dropdown-content">
+                                <label class="radio-label">
+                                    <input type="radio" name="product_sort" checked>
+                                    <div class="radio-marker"></div>
+                                    <span>
+                                        Сначала новинки
+                                    </span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="product_sort">
+                                    <div class="radio-marker"></div>
+                                    <span>
+                                        Сначала дороже
+                                    </span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="product_sort">
+                                    <div class="radio-marker"></div>
+                                    <span>
+                                        Сначала дешевле
+                                    </span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="product_sort">
+                                    <div class="radio-marker"></div>
+                                    <span>
+                                        Сначала популярные
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
                 <div class="product_grid-container">
                     <div class="product-card" data-availability="true">
                         <div class="product-card_img-wrapper">
@@ -617,7 +672,6 @@
             </div>
         </div>
     </footer>
-    
     <div class="modal-overlay " id="mobileMenu">
         <div class="menu-content">
             <div class="menu_content_top">
@@ -1170,6 +1224,201 @@
                 </div>
             </form>
 
+
+
+        </div>
+    </div>
+    <div class="modal-overlay " id="menuFilter">
+        <div class="menu-content">
+            <div class="menu_content_top">
+                <div class="modal-content__close"></div>
+                <h2 class="menu-content__title">
+                    Фильтр
+                </h2>
+            </div>
+            <div class="menu-content_main custom-scrollbar">
+                <div class="filter-container">
+                    <div class="filter-item">
+                        <div class="filter-item_top">
+                            <span class="filter-item_title">
+                                Цветы
+                            </span>
+                        </div>
+                        <div class="filter-item_hidden">
+                            <div class="checkbox-container">
+                                <label class="check-label">
+                                    <input type="checkbox" name="flower" value="Розы">
+                                    <div class="checkbox-marker"></div>
+                                    <span>
+                                        Розы
+                                    </span>
+                                </label>
+                                <label class="check-label">
+                                    <input type="checkbox" name="flower" value="Пионы">
+                                    <div class="checkbox-marker"></div>
+                                    <span>
+                                        Пионы
+                                    </span>
+                                </label>
+                                <label class="check-label">
+                                    <input type="checkbox" name="flower" value="Тюльпаны">
+                                    <div class="checkbox-marker"></div>
+                                    <span>
+                                        Тюльпаны
+                                    </span>
+                                </label>
+                                <label class="check-label">
+                                    <input type="checkbox" name="flower" value="Ромашки">
+                                    <div class="checkbox-marker"></div>
+                                    <span>
+                                        Ромашки
+                                    </span>
+                                </label>
+                                <label class="check-label">
+                                    <input type="checkbox" name="flower" value="Подсолнухи">
+                                    <div class="checkbox-marker"></div>
+                                    <span>
+                                        Подсолнухи
+                                    </span>
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="filter-item ">
+                        <div class="filter-item_top">
+                            <span class="filter-item_title">
+                                Кому
+                            </span>
+                        </div>
+                        <div class="filter-item_hidden">
+                            <div class="checkbox-container">
+                                <label class="check-label">
+                                    <input type="checkbox" name="who" value="Девушке">
+                                    <div class="checkbox-marker"></div>
+                                    <span>
+                                        Девушке
+                                    </span>
+                                </label>
+                                <label class="check-label">
+                                    <input type="checkbox" name="who" value="Маме">
+                                    <div class="checkbox-marker"></div>
+                                    <span>
+                                        Маме
+                                    </span>
+                                </label>
+                                <label class="check-label">
+                                    <input type="checkbox" name="who" value="Невесте">
+                                    <div class="checkbox-marker"></div>
+                                    <span>
+                                        Невесте
+                                    </span>
+                                </label>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="filter-item ">
+                        <div class="filter-item_top">
+                            <span class="filter-item_title">
+                                Упаковка
+                            </span>
+                        </div>
+                        <div class="filter-item_hidden">
+                            <div class="checkbox-container">
+                                <label class="check-label">
+                                    <input type="checkbox" name="packaging" value="Крафт">
+                                    <div class="checkbox-marker"></div>
+                                    <span>
+                                        Крафт
+                                    </span>
+                                </label>
+                                <label class="check-label">
+                                    <input type="checkbox" name="packaging" value="Пакет">
+                                    <div class="checkbox-marker"></div>
+                                    <span>
+                                        Пакет
+                                    </span>
+                                </label>
+                                <label class="check-label">
+                                    <input type="checkbox" name="packaging" value="Без упаковки">
+                                    <div class="checkbox-marker"></div>
+                                    <span>
+                                        Без упаковки
+                                    </span>
+                                </label>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="filter-item ">
+                        <div class="filter-item_top">
+                            <span class="filter-item_title">
+                                Кому
+                            </span>
+                        </div>
+                        <div class="filter-item_hidden">
+                            <span class="filter-who-name">Данных нет</span>
+
+                        </div>
+                    </div>
+                    <div class="filter-item ">
+                        <div class="filter-item_top">
+                            <span class="filter-item_title">
+                                Повод
+                            </span>
+                        </div>
+                        <div class="filter-item_hidden">
+                            <div class="checkbox-container">
+                                <label class="check-label">
+                                    <input type="checkbox" name="motive" value="День Рождения">
+                                    <div class="checkbox-marker"></div>
+                                    <span>
+                                        День Рождения
+                                    </span>
+                                </label>
+                                <label class="check-label">
+                                    <input type="checkbox" name="motive" value="Свадьба">
+                                    <div class="checkbox-marker"></div>
+                                    <span>
+                                        Свадьба
+                                    </span>
+                                </label>
+                                <label class="check-label">
+                                    <input type="checkbox" name="motive" value="8 марта">
+                                    <div class="checkbox-marker"></div>
+                                    <span>
+                                        8 марта
+                                    </span>
+                                </label>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="filter-price">
+                        <span class="filter-item_title">Цена</span>
+                        <div class="price-slider">
+                            <div class="slider-track"></div>
+                            <input type="range" class="slider-min" min="0" max="10000" value="2500" step="100">
+                            <input type="range" class="slider-max" min="0" max="30000" value="23500" step="100">
+                        </div>
+                        <div class="price-values">
+                            <span class="price-min">0 ₽</span>
+                            <span class="price-max">5 000 ₽</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn_group_column">
+                <div class="btn btn-primary btn--width" data-btn="apllyFilter">Применить</div>
+                <div class="btn btn-brow btn--width" data-btn="resetFilter">Сбросить</div>
+            </div>
 
 
         </div>
