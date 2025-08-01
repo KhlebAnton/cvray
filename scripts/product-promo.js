@@ -1,6 +1,5 @@
-// Настройки Swiper
 const swiperSettings = {
-    slidesPerView: 2, // По умолчанию 4 на ПК
+    slidesPerView: 2, 
     spaceBetween: 10,
     navigation: {
         nextEl: '.swiper-button-custom-next',
