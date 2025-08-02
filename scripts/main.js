@@ -39,11 +39,11 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   function productOnModal(btn, modal) {
-    const product = btn.closest('.product-card');
+    const product = btn.closest('.product-card') || btn.closest('.product_page-container');
 
-    const imgProduct = product.querySelector('.product-card_img');
-    const titleProduct = product.querySelector('.product-card_title');
-    const priceProduct = product.querySelector('.product-card_price');
+    const imgProduct = product.querySelector('.product-card_img') || product.querySelector('.product-page_preview img');
+    const titleProduct = product.querySelector('.product-card_title') || product.querySelector('.product-page__title h1');
+    const priceProduct = product.querySelector('.product-card_price') || product.querySelector('.product-page__price-new');
 
     const imgModal = modal.querySelector('.quick-order__img');
     const titleModal = modal.querySelector('.quick-order__name');
@@ -139,10 +139,10 @@ document.addEventListener('DOMContentLoaded', function () {
     openModal(modals.menu)
   });
   // btn--filter
-  if(document.querySelector('.btn--filter')) {
+  if (document.querySelector('.btn--filter')) {
     document.querySelector('.btn--filter').addEventListener('click', () => {
-    openModal(modals.filter)
-  });
+      openModal(modals.filter)
+    });
   }
 
 
@@ -329,7 +329,7 @@ document.addEventListener('DOMContentLoaded', function () {
     updateSlider();
   });
 
-// filter
+  // filter
   const filterContainer = document.querySelector('.filter-container');
   if (filterContainer) {
     const filterItems = filterContainer.querySelectorAll('.filter-item');
@@ -374,5 +374,24 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
     }
-  }
+  };
+
+  
 });
+
+const accordionContainer = document.querySelector('.accordion-container');
+  if (accordionContainer) {
+    const accordionItems = accordionContainer.querySelectorAll('.accordion-item');
+
+    accordionItems.forEach(item => {
+      const top = item.querySelector('.accordion-item_top');
+      top.addEventListener('click', () => {
+        accordionItems.forEach(i => {
+          if (i !== item) {
+            i.classList.remove('is-open');
+          }
+        });
+        item.classList.toggle('is-open');
+      });
+    });
+  }
