@@ -87,182 +87,256 @@
     </header>
     <nav class="breadcrumbs container">
         <a href="#">Главная</a>
-        <a href="#">Корзина</a>
+        <a href="#">Личный кабинет</a>
+         <a href="#">История заказов</a>
+
     </nav>
     <main class="main">
-        <section class="section_basket">
+
+        <section>
             <div class="container flex-column">
                 <h1>
-                    Корзина
+                    История заказов
                 </h1>
-                <div class="basket-container">
-                    <div class="basket-items-container">
-                        <div class="basket-item">
-                            <div class="basket-item__top">
-                                <img src="./images/product/1.png" class="basket-item__img">
-                                <div class="basket-item__info">
-                                    <span class="basket-item__title">
-                                        Букет для невест «Сладка вата» из роз, пионов и хризантем
-                                    </span>
-                                    <div class="basket-item__bottom">
-                                        <div class="basket-item__price">
-                                            <span class="basket-item__price-old">
-                                                8 000 ₽
-                                            </span>
-                                            <span class="basket-item__price-new">
-                                                3 000 ₽
-                                            </span>
-                                        </div>
-                                        <div class="basket-item__btn-group">
-                                            <div class="basket-item__btn basket-item__btn-trash"></div>
-                                            <div class="basket-item__btn basket-item__btn-like" data-btn="likeProduct">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="basket-item__price_all">
-                                <span class="basket-item__price_all-new">
-                                    300 000 ₽
-                                </span>
-                                <span class="basket-item__price_all-old">
-                                    800 000 ₽
-                                </span>
-
-                            </div>
-                            <div class="counter">
-                                <div class="counter_item counter_btn-minus">-</div>
-                                <div class="counter_item counter_count">
-                                    <input type="text" name="count" value="100">
-                                </div>
-                                <div class="counter_item counter_btn-plus">+</div>
-                            </div>
-                        </div>
-                         <div class="basket-item">
-                            <div class="basket-item__top">
-                                <img src="./images/product/2.png" class="basket-item__img">
-                                <div class="basket-item__info">
-                                    <span class="basket-item__title">
-                                        Букет для невест «Сладка вата» из роз, пионов и хризантем Букет для невест «Сладка вата» из роз, пионов и хризантем
-                                    </span>
-                                    <div class="basket-item__bottom">
-                                        <div class="basket-item__price">
-                                            <span class="basket-item__price-old">
-                                                10 000 ₽
-                                            </span>
-                                            <span class="basket-item__price-new">
-                                                4 000 ₽
-                                            </span>
-                                        </div>
-                                        <div class="basket-item__btn-group">
-                                            <div class="basket-item__btn basket-item__btn-trash"></div>
-                                            <div class="basket-item__btn basket-item__btn-like" data-btn="likeProduct">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="basket-item__price_all">
-                                <span class="basket-item__price_all-new">
-                                    300 000 ₽
-                                </span>
-                                <span class="basket-item__price_all-old">
-                                    800 000 ₽
-                                </span>
-
-                            </div>
-                            <div class="counter">
-                                <div class="counter_item counter_btn-minus">-</div>
-                                <div class="counter_item counter_count">
-                                    <input type="text" name="count" value="3">
-                                </div>
-                                <div class="counter_item counter_btn-plus">+</div>
-                            </div>
-                        </div>
-                         <div class="basket-item">
-                            <div class="basket-item__top">
-                                <img src="./images/product/4.png" class="basket-item__img">
-                                <div class="basket-item__info">
-                                    <span class="basket-item__title">
-                                        Букет «Успешный»
-                                    </span>
-                                    <div class="basket-item__bottom">
-                                        <div class="basket-item__price">
-                                            <span class="basket-item__price-old">
-                                                2 000 ₽
-                                            </span>
-                                            <span class="basket-item__price-new">
-                                                1 000 ₽
-                                            </span>
-                                        </div>
-                                        <div class="basket-item__btn-group">
-                                            <div class="basket-item__btn basket-item__btn-trash"></div>
-                                            <div class="basket-item__btn basket-item__btn-like" data-btn="likeProduct">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="basket-item__price_all">
-                                <span class="basket-item__price_all-new">
-                                    300 000 ₽
-                                </span>
-                                <span class="basket-item__price_all-old">
-                                    800 000 ₽
-                                </span>
-
-                            </div>
-                            <div class="counter">
-                                <div class="counter_item counter_btn-minus">-</div>
-                                <div class="counter_item counter_count">
-                                    <input type="text" name="count" value="2">
-                                </div>
-                                <div class="counter_item counter_btn-plus">+</div>
-                            </div>
+                <div class="lk_container">
+                    <div class="lk_wrapper lk_nav sticky-el ">
+                        <h4 class="lk_user">Иван Н</h4>
+                        <div class="lk-links custom-scrollbar">
+                            <a href="#" class="lk-link lk-link--home ">
+                                Главная
+                            </a>
+                            <a href="#" class="lk-link lk-link--history is-active">
+                                История заказов
+                            </a>
+                            <a href="#" class="lk-link lk-link--liked">
+                                Избранное
+                            </a>
+                            <a href="#" class="lk-link lk-link--mail">
+                                Управление рассылками
+                            </a>
+                            <a href="#" class="lk-link lk-link--settings">
+                                Настройки профиля
+                            </a>
                         </div>
                     </div>
-                    <div class="promocode-container sticky-el ">
-                        <h4>Сумма заказа</h4>
-                        <div class="promocode-content">
-                            <div class="order_wrapper">
-                                <div class="order_item">
-                                    <span class="order_count">
-                                        3 товара
-                                    </span>
-                                    <span class="order_price">
-                                        11 000 ₽
-                                    </span>
-                                </div>
-                                <div class="order_item order_item--discount">
-                                    <span>
-                                        Скидка
-                                    </span>
-                                    <span class="order_price-discount">
-                                        - 2000 ₽
-                                    </span>
-                                </div>
+                    <div class="lk_content">
+                         <div class="lk_wrapper lk_history">
+                            <div class="lk_history-top lk_history-row">
+                                <span>
+                                    Дата оформления
+                                </span>
+                                <span>
+                                    Номер заказа
+                                </span>
+                                <span>
+                                    Состав заказа
+                                </span>
+                                <span>
+                                    Кол-во в заказе
+                                </span>
+                                <span>
+                                    Сумма
+                                </span>
                             </div>
-                            <div class="promocode">
-                                <input type="text" placeholder="Ввести промокод">
-                                <span class="apply-promocode">Промокод</span>
-                                <span class="err-msg">Такого промокода не существует</span>
-                                <span class="btn-promocode promocode-apply">Применить</span>
-                                <span class="btn-promocode promocode-remove">Удалить</span>
+                            <div class="lk_history-item lk_history-row">
+                                <span class="lk_history-item-date">
+                                    22.09.2024
+                                </span>
+                                <span class="lk_history-item-num">
+                                    34566
+                                </span>
+                                <div class="lk_history-item__product">
+                                    <a href="#">
+                                        <img src="./images/product/1.png" alt="" class="history-item__product-img">
+                                    </a>
+                                    <a href="#">
+                                        <img src="./images/product/2.png" alt="" class="history-item__product-img">
+                                    </a>
+                                    <a href="#">
+                                        <img src="./images/product/3.png" alt="" class="history-item__product-img">
+                                    </a>
+                                </div>
+                                <span class="lk_history-item-count">3</span>
+                                <span class="lk_history-item-price">
+                                    23 000 ₽
+                                </span>
                             </div>
-                        </div>
-                        <a href="#" class="btn btn-primary btn--width">Перейти к оформлению</a>
+                            <div class="lk_history-item lk_history-row">
+                                <span class="lk_history-item-date">
+                                    22.09.2024
+                                </span>
+                                <span class="lk_history-item-num">
+                                    34566
+                                </span>
+                                <div class="lk_history-item__product">
+                                    <a href="#">
+                                        <img src="./images/product/8.png" alt="" class="history-item__product-img">
+                                    </a>
+                                    
+                                </div>
+                                <span class="lk_history-item-count">3</span>
+                                <span class="lk_history-item-price">
+                                    23 000 ₽
+                                </span>
+                            </div>
+                            <div class="lk_history-item lk_history-row">
+                                <span class="lk_history-item-date">
+                                    22.09.2024
+                                </span>
+                                <span class="lk_history-item-num">
+                                    34566
+                                </span>
+                                <div class="lk_history-item__product">
+                                    <a href="#">
+                                        <img src="./images/product/3.png" alt="" class="history-item__product-img">
+                                    </a>
+                                    <a href="#">
+                                        <img src="./images/product/1.png" alt="" class="history-item__product-img">
+                                    </a>
+                                    <a href="#">
+                                        <img src="./images/product/4.png" alt="" class="history-item__product-img">
+                                    </a>
+                                </div>
+                                <span class="lk_history-item-count">3</span>
+                                <span class="lk_history-item-price">
+                                    23 000 ₽
+                                </span>
+                            </div>
+                            <div class="lk_history-item lk_history-row">
+                                <span class="lk_history-item-date">
+                                    22.09.2024
+                                </span>
+                                <span class="lk_history-item-num">
+                                    34566
+                                </span>
+                                <div class="lk_history-item__product">
+                                    <a href="#">
+                                        <img src="./images/product/6.png" alt="" class="history-item__product-img">
+                                    </a>
+                                    
+                                </div>
+                                <span class="lk_history-item-count">3</span>
+                                <span class="lk_history-item-price">
+                                    2 000 ₽
+                                </span>
+                            </div>
+                            <div class="lk_history-item lk_history-row">
+                                <span class="lk_history-item-date">
+                                    22.09.2024
+                                </span>
+                                <span class="lk_history-item-num">
+                                    34566
+                                </span>
+                                <div class="lk_history-item__product">
+                                    <a href="#">
+                                        <img src="./images/product/1.png" alt="" class="history-item__product-img">
+                                    </a>
+                                    
+                                </div>
+                                <span class="lk_history-item-count">3</span>
+                                <span class="lk_history-item-price">
+                                   11 050 ₽
+                                </span>
+                            </div>
+                            <div class="lk_history-item lk_history-row">
+                                <span class="lk_history-item-date">
+                                    22.09.2024
+                                </span>
+                                <span class="lk_history-item-num">
+                                    34566
+                                </span>
+                                <div class="lk_history-item__product">
+                                    <a href="#">
+                                        <img src="./images/product/2.png" alt="" class="history-item__product-img">
+                                    </a>
+                                   
+                                </div>
+                                <span class="lk_history-item-count">3</span>
+                                <span class="lk_history-item-price">
+                                   123 000 ₽
+                                </span>
+                            </div>
+                            <div class="lk_history-item lk_history-row">
+                                <span class="lk_history-item-date">
+                                    22.09.2024
+                                </span>
+                                <span class="lk_history-item-num">
+                                    34566
+                                </span>
+                                <div class="lk_history-item__product">
+                                    <a href="#">
+                                        <img src="./images/product/1.png" alt="" class="history-item__product-img">
+                                    </a>
+                                    <a href="#">
+                                        <img src="./images/product/2.png" alt="" class="history-item__product-img">
+                                    </a>
+                                    <a href="#">
+                                        <img src="./images/product/3.png" alt="" class="history-item__product-img">
+                                    </a>
+                                    <a href="#">
+                                        <img src="./images/product/4.png" alt="" class="history-item__product-img">
+                                    </a>
+                                    <a href="#">
+                                        <img src="./images/product/5.png" alt="" class="history-item__product-img">
+                                    </a>
+                                    <a href="#">
+                                        <img src="./images/product/6.png" alt="" class="history-item__product-img">
+                                    </a>
+                                    <a href="#">
+                                        <img src="./images/product/7.png" alt="" class="history-item__product-img">
+                                    </a>
+                                </div>
+                                <span class="lk_history-item-count">3</span>
+                                <span class="lk_history-item-price">
+                                    123 452 000 ₽
+                                </span>
+                            </div>
+                         </div>
                     </div>
                 </div>
-
-
             </div>
+
         </section>
 
 
-       
+
+        <section class="section_contact">
+            <div class="container contact-container">
+                <div class="block_call">
+                    <div class="block_call__info">
+                        <h3>
+                            Не нашли то, что искали?
+                        </h3>
+                        <p class="text-m">
+                            Оставьте заявку, и мы поможем вам собрать индивидуальный букет под ваши предпочтения
+                        </p>
+                    </div>
+                    <div class="btn btn-thrid" data-btn="modalForm">Заказать</div>
+                </div>
+                <div class="block_contact">
+                    <h3>
+                        Связаться с нами
+                    </h3>
+                    <div class="block-contact_items">
+                        <a href="mailto:cvray@mail.ru" class="block-contact_item contact_item--mail">
+                            cvray@mail.ru
+                        </a>
+                        <a href="tel:+79788024463" class="block-contact_item contact_item--phone">
+                            +7 (978) 802-44-63
+                        </a>
+                        <a href="#" class="block-contact_item contact_item--wt">
+                            +7 (978) 802-44-63
+                        </a>
+                        <a href="#" class="block-contact_item contact_item--tg">
+                            @CvetochniyRay_Yalta
+                        </a>
+                        <a href="#" class="block-contact_item contact_item--vk">
+                            @cvray_dostavca_cvetov_yalta
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
 
     </main>
     <footer class="footer">
@@ -449,6 +523,7 @@
             </div>
         </div>
     </footer>
+
     <div class="modal-overlay " id="mobileMenu">
         <div class="menu-content">
             <div class="menu_content_top">
@@ -1009,10 +1084,8 @@
     <script src="./scripts/intlTelInput.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="./scripts/product-promo.js"></script>
-
     <script src="./scripts/main.js"></script>
-<script src="./scripts/basket.js"></script>
+
 </body>
 
 </html>
