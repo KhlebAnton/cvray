@@ -1,25 +1,38 @@
 document.addEventListener('DOMContentLoaded', function () {
   const header = document.querySelector('.header');
   let lastScrollY = window.scrollY;
+  let scrollUpDistance = 0;
 
   window.addEventListener('scroll', function () {
     const currentScrollY = window.scrollY;
 
-    if (currentScrollY <= 0) {
+    if (currentScrollY <= 100) {
       header.classList.remove('is-scrolled', 'is-visible');
+      scrollUpDistance = 0;
       return;
     }
 
     if (currentScrollY > lastScrollY) {
       header.classList.add('is-scrolled');
       header.classList.remove('is-visible');
-    } else {
+      scrollUpDistance = 0;
+    } else if (currentScrollY <= 200) {
       header.classList.remove('is-scrolled');
       header.classList.add('is-visible');
+    }
+    else {
+      scrollUpDistance += (lastScrollY - currentScrollY);
+
+      if (scrollUpDistance > 300) {
+        header.classList.remove('is-scrolled');
+        header.classList.add('is-visible');
+      }
+
     }
 
     lastScrollY = currentScrollY;
   });
+
   const btnToTop = document.querySelector('.btn_page-top');
 
   window.addEventListener('scroll', function () {
@@ -65,10 +78,11 @@ document.addEventListener('DOMContentLoaded', function () {
     regist: document.getElementById('modalRegist'),
     password: document.getElementById('modalPassword'),
     filter: document.getElementById('menuFilter'),
+    orderSucces: document.getElementById('modalSuccesOrder'),
   };
 
   // Закрытие модалок при клике на крестик или оверлей
-  document.querySelectorAll('.modal-overlay, .modal-content__close').forEach(closeBtn => {
+  document.querySelectorAll('.modal-overlay, .modal-content__close, [data-btn="closeModal"]').forEach(closeBtn => {
     closeBtn.addEventListener('click', (e) => {
       if (e.target === closeBtn || closeBtn.classList.contains('modal-content__close')) {
         document.querySelectorAll('.modal-overlay').forEach(modal => {
@@ -205,50 +219,142 @@ document.addEventListener('DOMContentLoaded', function () {
     name = name.trim();
     return name.length >= 2 && /^[a-zA-Zа-яА-ЯёЁ\- ]+$/.test(name);
   }
+  function validateDateInput(input) {
+    const value = input.value;
+    const label = input.closest('.input_label');
+    const errorMsg = label.querySelector('.error_msg');
 
-  document.querySelectorAll('.form').forEach(form => {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      const nameInput = this.querySelector('input[name="name"]');
-      if (!nameInput) {
-        if (form.querySelector('.success_form__content')) {
-          form.classList.add('success_form');
+    // Проверка на пустоту
+    if (!value || value.length < 10) {
+      showError(input, 'Введите дату в формате ДД.ММ.ГГГГ');
+      return false;
+    }
 
-        }
-        return
-      };
+    // Разбиваем дату на части
+    const [day, month, year] = value.split('.').map(Number);
+    const date = new Date(year, month - 1, day);
 
-      const nameLabel = nameInput.closest('.input_label');
-      const errorMsg = nameLabel.querySelector('.error_msg');
+    // Проверка на корректность (например, нет 31 февраля)
+    const isDateValid = (
+      date.getFullYear() === year &&
+      date.getMonth() === month - 1 &&
+      date.getDate() === day
+    );
 
-      if (!validateName(nameInput.value)) {
-        e.preventDefault();
-        nameLabel.classList.add('error');
-        errorMsg.style.display = 'block';
-      } else {
-        nameLabel.classList.remove('error');
-        errorMsg.style.display = 'none';
-        if (form.querySelector('.success_form__content')) {
-          form.classList.add('success_form');
+    if (!isDateValid) {
+      showError(input, 'Некорректная дата');
+      return false;
+    }
 
-        }
-      }
+    // Проверка, что дата не в прошлом
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (date < today) {
+      showError(input, 'Дата не может быть в прошлом');
+      return false;
+    }
+
+    // Проверка, что дата не больше чем +100 лет
+    const maxDate = new Date();
+    maxDate.setFullYear(maxDate.getFullYear() + 100);
+
+    if (date > maxDate) {
+      showError(input, 'Нельзя так далеко планировать');
+      return false;
+    }
+
+    // Если всё правильно
+    clearError(input);
+    return true;
+  }
+  function showError(input, message) {
+    const label = input.closest('.input_label');
+    const errorMsg = label.querySelector('.error_msg');
+
+    label.classList.add('error');
+    errorMsg.textContent = message;
+    errorMsg.style.display = 'block';
+  }
+  // Скрыть ошибку
+  function clearError(input) {
+    const label = input.closest('.input_label');
+    const errorMsg = label.querySelector('.error_msg');
+
+    label.classList.remove('error');
+    errorMsg.style.display = 'none';
+  }
+  // Инициализация Cleave.js для даты (маска ДД.ММ.ГГГГ)
+  const dateInputs = document.querySelectorAll('.date-input');
+  dateInputs.forEach(input => {
+    new Cleave(input, {
+      date: true,
+      datePattern: ['d', 'm', 'Y'],
+      delimiter: '.',
 
     });
 
+    // Проверка при вводе
+    // input.addEventListener('input', function() {
+    //     validateDateInput(this);
+    // });
+  });
+  document.querySelectorAll('form').forEach(form => {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      let isFormValid = true;
+
+      // Проверка имени
+      const nameInput = this.querySelector('input[name="name"]');
+      if (nameInput) {
+        if (!validateName(nameInput.value)) {
+          showError(nameInput, '*ошибка ввода имени');
+          nameInput.value += '*';
+          isFormValid = false;
+        } else {
+          clearError(nameInput);
+        }
+      }
+
+      // Проверка даты
+      const dateInput = this.querySelector('.date-input');
+      if (dateInput) {
+        if (!validateDateInput(dateInput)) {
+          isFormValid = false;
+        }
+      }
+
+      if (isFormValid) {
+        if (form.querySelector('.success_form__content')) {
+          form.classList.add('success_form');
+        }
+        if (form.classList.contains('order-form')) {
+          const dateForm = {
+            nameClient: form.querySelector('input[name="recipient"]').checked ? form.querySelector('input[name="name"]').value : form.querySelector('input[name="nameRecipient"]').value,
+            dateDelivery: form.querySelector('input[name="date"]').value,
+            adressDelivery: form.querySelector('input[name="city"]').value + ", " + form.querySelector('input[name="adress"]').value,
+            comment: form.querySelector('textarea[name="msg"]').value ? form.querySelector('textarea[name="msg"]').value : 'Нет комментария',
+          };
+          modals.orderSucces.querySelector('.order-data__date').textContent = dateForm.dateDelivery;
+          modals.orderSucces.querySelector('.order-data__adress').textContent = dateForm.adressDelivery;
+          modals.orderSucces.querySelector('.order-data__name').textContent = dateForm.nameClient;
+          modals.orderSucces.querySelector('.order-data__comment').textContent = dateForm.comment;
+
+          openModal(modals.orderSucces);
+
+        }
+      }
+    });
+
+    // Валидация имени при вводе
     const nameInput = form.querySelector('input[name="name"]');
     if (nameInput) {
       nameInput.addEventListener('input', function () {
-        const nameLabel = this.closest('.input_label');
-        const errorMsg = nameLabel.querySelector('.error_msg');
-
         if (validateName(this.value)) {
-          nameLabel.classList.remove('error');
-          errorMsg.style.display = 'none';
+          clearError(this);
         }
       });
     }
-
   });
   // category
   // Получаем все элементы табов
@@ -376,22 +482,110 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   };
 
-  
+
 });
 
 const accordionContainer = document.querySelector('.accordion-container');
-  if (accordionContainer) {
-    const accordionItems = accordionContainer.querySelectorAll('.accordion-item');
+if (accordionContainer) {
+  const accordionItems = accordionContainer.querySelectorAll('.accordion-item');
 
-    accordionItems.forEach(item => {
-      const top = item.querySelector('.accordion-item_top');
-      top.addEventListener('click', () => {
-        accordionItems.forEach(i => {
-          if (i !== item) {
-            i.classList.remove('is-open');
-          }
-        });
-        item.classList.toggle('is-open');
+  accordionItems.forEach(item => {
+    const top = item.querySelector('.accordion-item_top');
+    top.addEventListener('click', () => {
+      accordionItems.forEach(i => {
+        if (i !== item) {
+          i.classList.remove('is-open');
+        }
       });
+      item.classList.toggle('is-open');
     });
-  }
+  });
+}
+
+// Находим все счётчики на странице
+const counters = document.querySelectorAll('.counter');
+
+if (counters) {
+  counters.forEach(counter => {
+    const minusBtn = counter.querySelector('.counter_btn-minus');
+    const plusBtn = counter.querySelector('.counter_btn-plus');
+    const input = counter.querySelector('.counter_count input[name="count"]');
+
+    const isBasketItemCounter = counter.closest('.basket-item') !== null;
+
+    function validateInput() {
+      let value = parseInt(input.value) || (isBasketItemCounter ? 1 : 0);
+
+      // Для корзины минимум 1, для остальных 0
+      if (isBasketItemCounter) {
+        if (value < 1) value = 1;
+      } else {
+        if (value < 0) value = 0;
+      }
+
+      if (value > 999) value = 999;
+      input.value = value;
+      return value;
+    }
+
+    function updateTotalPrice() {
+      if (!isBasketItemCounter) return;
+
+      const basketItem = counter.closest('.basket-item');
+      const priceNew = basketItem.querySelector('.basket-item__price-new');
+      const priceOld = basketItem.querySelector('.basket-item__price-old');
+      const priceAllNew = basketItem.querySelector('.basket-item__price_all-new');
+      const priceAllOld = basketItem.querySelector('.basket-item__price_all-old');
+
+      const unitPrice = parseInt(priceNew.textContent.replace(/\s+/g, '').replace('₽', ''));
+      const unitPriceOld = parseInt(priceOld.textContent.replace(/\s+/g, '').replace('₽', ''));
+
+      const count = parseInt(input.value) || 1; // Для корзины минимум 1
+
+      const totalPrice = unitPrice * count;
+      const totalPriceOld = unitPriceOld * count;
+
+      priceAllNew.textContent = totalPrice.toLocaleString('ru-RU') + ' ₽';
+      if (priceAllOld) {
+        priceAllOld.textContent = totalPriceOld.toLocaleString('ru-RU') + ' ₽';
+      }
+    }
+
+    minusBtn.addEventListener('click', function () {
+      let value = validateInput();
+      if (value > (isBasketItemCounter ? 1 : 0)) {
+        input.value = value - 1;
+        updateTotalPrice();
+      }
+    });
+
+    plusBtn.addEventListener('click', function () {
+      let value = validateInput();
+      if (value < 999) {
+        input.value = value + 1;
+        updateTotalPrice();
+      }
+    });
+
+    input.addEventListener('input', function () {
+      this.value = this.value.replace(/[^0-9]/g, '');
+      if (this.value.length > 3) {
+        this.value = this.value.slice(0, 3);
+      }
+    });
+
+    input.addEventListener('change', function () {
+      validateInput();
+      updateTotalPrice();
+    });
+
+    input.addEventListener('blur', function () {
+      validateInput();
+      updateTotalPrice();
+    });
+
+    // Инициализация при загрузке
+    validateInput();
+    updateTotalPrice();
+  });
+}

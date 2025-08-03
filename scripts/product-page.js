@@ -75,36 +75,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    const minusBtn = document.querySelector('.counter_btn-minus');
-    const plusBtn = document.querySelector('.counter_btn-plus');
-    const input = document.querySelector('.counter_count input[name="count"]');
-
-    function validateInput() {
-        let value = parseInt(input.value) || 0;
-        if (value < 0) value = 0;
-        if (value > 999) value = 999;
-        input.value = value;
-        return value;
-    }
-
-    minusBtn.addEventListener('click', function () {
-        let value = validateInput();
-        if (value > 0) {
-            input.value = value - 1;
-        }
-    });
-
-    plusBtn.addEventListener('click', function () {
-        let value = validateInput();
-        input.value = value + 1;
-    });
-
-    input.addEventListener('input', function (e) {
-        this.value = this.value.replace(/[^0-9]/g, '');
-    });
-
-    input.addEventListener('blur', validateInput);
-
+    
     const btnLinkCopy = document.querySelector('.btn.product_card_link');
     btnLinkCopy.addEventListener('click', () => {
         const url = window.location.href;
@@ -112,5 +83,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(() => btnLinkCopy.classList.add('copy'))
             .catch(err => console.error('Не удалось скопировать ссылку:', err));
     });
+
+    
 });
 
