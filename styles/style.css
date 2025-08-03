@@ -66,7 +66,57 @@ html {
     color: var(--dark-black);
     background-color: var(--light-bg);
 }
+.page_404 {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: url('../images/404.jpg')50% / cover no-repeat;
+    overflow-y: auto;
+    display: flex;
+    padding: 100px 40px 40px;
+}
+.page_404-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 706px;
 
+}
+.page_404-logo {
+    max-width: 244px;
+    flex-shrink: 0;
+    width: 100%;
+    height: 51px;
+    background: url('../images/logo_brow.svg') 50% / contain no-repeat;
+}
+.page_404-bottom {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+}
+.page_404-num {
+    margin-top: 237px;
+    max-width: 566px;
+    width: 100%;
+    aspect-ratio: 1 / 0.378;
+    background: url('../images/404_num.svg') 50% / contain no-repeat;
+
+}
+.page_404_text {
+    margin-top: 60px;
+    margin-bottom: 15px;
+    font-family: 'Rubik';
+    font-size: 24px;
+    line-height: 30px;
+    color: #404145;
+    font-weight: 500;
+}
 .visually-hidden {
     position: absolute;
     top: -999999em;
@@ -204,7 +254,11 @@ input:focus {
     flex-direction: column;
     gap: 40px;
 }
-
+.flex-column-20 {
+     display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 h1,
 h2,
 h3,
@@ -232,6 +286,7 @@ h1 {
 h2 {
     font-size: 40px;
     line-height: 40px;
+    
 }
 
 h3 {
@@ -265,7 +320,14 @@ h4 {
     font-size: 14px;
     line-height: 18px;
 }
+.color-brown-light ,
+.text_link {
+    color: #CDAF95;
+}
 
+.text_link:hover {
+    color: var(--dark-brown);
+}
 .link_tel {
     font-weight: 600;
     font-size: 16px;
@@ -3562,6 +3624,52 @@ footer .block-contact_item::before {
 .delivery-item_wrapper .delivery-item:last-child {
  padding-bottom: 0;
 }
+.reviews_grid-container {
+    display: grid;
+    align-items: start;
+    grid-template-columns: repeat(4,1fr);
+    gap: 40px 20px;
+}
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+.section_dilevery_yalta .about_info h3 {
+    margin-top: 20px;
+}
+.about_img-wrapper {
+    height: 100%;
+}
+.title_flex {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.advantage-item {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 32px;
+    border: 1px solid #CDAF95;
+    list-style: none;
+}
+.advantage-item p {
+    display: flex;
+    gap: 10px;
+}
+.advantage-item p::before {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    background: url('../images/icons/flower.svg');
+}
+.politic_container {
+    max-width: 1285px;
+}
 @media (max-width:1500px) {
     .payment-methods_items {
         display: grid;
@@ -3689,6 +3797,10 @@ footer .block-contact_item::before {
     }
 
     .order-form-container {
+        gap: 20px;
+    }
+    .reviews_grid-container {
+        grid-template-columns: 1fr 1fr 1fr;
         gap: 20px;
     }
 }
@@ -4501,6 +4613,21 @@ footer .block-contact_item::before {
     .delivery-item_wrapper .delivery-item--top span {
         font-size: 20px;
     }
+    .reviews_grid-container {
+        gap: 10px;
+    }
+    .grid-container {
+        gap: 10px;
+    }
+}
+@media (max-width:750px) {
+ .reviews_grid-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+    .grid-container {
+        grid-template-columns: 1fr ;
+    }
 }
 
 @media (max-width:700px) {
@@ -4593,6 +4720,7 @@ footer .block-contact_item::before {
     .why_row:nth-child(n) {
         grid-template-columns: 1fr;
     }
+   
 
 }
 
@@ -4694,6 +4822,31 @@ footer .block-contact_item::before {
     .payment-methods_items {
         grid-template-columns: 1fr;
     }
+    
+}
+@media (max-width:500px) {
+.reviews_grid-container {
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+    .page_404 {
+        padding: 40px;
+    }
+     .page_404-num {
+        margin-top: 127px;
+        max-width: 190px;
+    }
+    .page_404-logo {
+        max-width: 125px;
+        height: 25px;
+    }
+    .page_404-content {
+        margin: auto;
+    }
+    .page_404_text {
+        font-size: 16px;
+        text-align: center;
+    }
 }
 
 @media (max-width:400px) {
@@ -4705,4 +4858,5 @@ footer .block-contact_item::before {
         flex-direction: column;
         gap: 6px;
     }
+   
 }
