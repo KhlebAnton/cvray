@@ -5078,6 +5078,10 @@ position: sticky;
    .lk_wrapper.lk_history {
         grid-template-columns: 1fr ;
      }
+     .lk_history-item {
+        padding: 20px;
+        border-radius: 16px;
+     }
 
 }
 
