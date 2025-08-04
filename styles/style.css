@@ -3991,7 +3991,7 @@ position: sticky;
     }
 
     .swiper-product-page .swiper-slide {
-        height: auto;
+        height: 100%;
         aspect-ratio: 1 / 1;
     }
 
