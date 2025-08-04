@@ -4507,6 +4507,9 @@ position: sticky;
         aspect-ratio: 1 / 0.59;
     }
 
+    .swiper-slide.blog_card .blog_card_info {
+        padding: 10px ;
+    }
     .blog_card_info {
         padding: 10px 0;
     }
