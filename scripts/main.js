@@ -178,9 +178,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
   });
   // auth 
-  document.querySelector('[data-btn="auth"]').addEventListener('click', () => {
+  document.querySelectorAll('[data-btn="auth"]').forEach(btn => {
+    btn.addEventListener('click', () => {
     openModal(modals.auth)
   })
+  })
+  
+  
+ 
   // regist
   document.querySelector('[data-btn="regist"]').addEventListener('click', () => {
     openModal(modals.regist)
