@@ -6,8 +6,8 @@ const swiperBlog = new Swiper('.swiper_blog', {
     speed: 600, // Скорость анимации в ms
     resistanceRatio: 0.7, // Чувствительность свайпа
     navigation: {
-        nextEl: '.swiper-button-custom-next',
-        prevEl: '.swiper-button-custom-prev',
+        nextEl: '.swiper_blog-nav.swiper-button-custom-next',
+        prevEl: '.swiper_blog-nav.swiper-button-custom-prev',
     },
     
     on: {

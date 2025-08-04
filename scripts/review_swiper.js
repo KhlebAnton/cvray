@@ -3,8 +3,8 @@ const swiperReviews = new Swiper('.swiper_review',
         slidesPerView: 'auto',
         spaceBetween: 10,
         navigation: {
-            nextEl: '.swiper-button-custom-next',
-            prevEl: '.swiper-button-custom-prev',
+            nextEl: '.swiper_review .swiper-button-custom-next',
+            prevEl: '.swiper_review .swiper-button-custom-prev',
         },
         pagination: {
             el: '.swiper-pagination',

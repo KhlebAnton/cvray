@@ -2,8 +2,8 @@ const swiperSettings = {
     slidesPerView: 2, 
     spaceBetween: 10,
     navigation: {
-        nextEl: '.swiper-button-custom-next',
-        prevEl: '.swiper-button-custom-prev',
+        nextEl: '.swiper_promo .swiper-button-custom-next',
+        prevEl: '.swiper_promo .swiper-button-custom-prev',
     },
     pagination: {
         el: '.swiper-pagination',
