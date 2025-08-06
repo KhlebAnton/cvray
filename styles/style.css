@@ -3352,7 +3352,7 @@ position: sticky;
 
 .blog-item__content ul,
 .blog-item__content ol {
-    color: #B2C39F;
+   
     font-size: 18px;
     line-height: 24px;
     padding-left: 1.2em;
@@ -3362,16 +3362,15 @@ position: sticky;
     margin: 10px 0;
 
 }
-
+.blog-item__content ul li::marker,
+.blog-item__content ol li::marker {
+ color: #B2C39F;
+}
 .blog-item__content ol {
     padding-left: 1.1em;
 }
 
-.blog-item__content ul li span,
-.blog-item__content ol li span {
-    color: var(--dark-black);
 
-}
 
 .blog-item__content ol li {
     padding-left: .1em;

@@ -1,15 +1,18 @@
- document.addEventListener('DOMContentLoaded', function() {
-        const reviewTexts = document.querySelectorAll('.review__text');
-        const reviewMoreButtons = document.querySelectorAll('.review_more');
-        
+document.addEventListener('DOMContentLoaded', function () {
+    const reviewTexts = document.querySelectorAll('.review__text');
+    const reviewMoreButtons = document.querySelectorAll('.review_more');
+
+
+
+    function updateText() {
         reviewTexts.forEach((textEl, index) => {
             const moreButton = reviewMoreButtons[index];
-            
+
             if (textEl.scrollHeight > textEl.clientHeight) {
                 moreButton.style.display = 'block';
             }
-            
-            moreButton.addEventListener('click', function() {
+
+            moreButton.addEventListener('click', function () {
                 if (textEl.classList.contains('expanded')) {
                     textEl.classList.remove('expanded');
                     moreButton.textContent = 'Развернуть';
@@ -19,4 +22,6 @@
                 }
             });
         });
-    });
+    };
+    updateText()
+});

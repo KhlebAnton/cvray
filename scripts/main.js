@@ -302,7 +302,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   function showError(input, message) {
     const label = input.closest('.input_label');
-    label.scrollIntoView({block: 'center', behavior: 'smooth' });
+    label.scrollIntoView({ block: 'center', behavior: 'smooth' });
     const errorMsg = label.querySelector('.error_msg');
     if (!errorMsg) {
       const errSpan = document.createElement('span');
@@ -468,14 +468,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // category
   // Получаем все элементы табов
-  const tabs = document.querySelectorAll('.product-filter__tab');
+  // const tabs = document.querySelectorAll('.product-filter__tab');
 
-  tabs.forEach(tab => {
-    tab.addEventListener('click', function () {
-      tabs.forEach(t => t.classList.remove('is-active'));
-      this.classList.add('is-active');
-    });
-  });
+  // tabs.forEach(tab => {
+  //   tab.addEventListener('click', function () {
+  //     tabs.forEach(t => t.classList.remove('is-active'));
+  //     this.classList.add('is-active');
+  //   });
+  // });
 
   // Находим все dropdown-компоненты на странице
   const dropdownWrappers = document.querySelectorAll('.dropdown-wrapper');
@@ -699,3 +699,102 @@ if (counters) {
     updateTotalPrice();
   });
 }
+
+
+// Прдукт контейнер
+const config = {
+  itemsToLoad: 12,
+  containerSelector: '.container__page',
+  loadMoreBtnSelector: '#loadMoreBtn'
+};
+if (document.querySelector(config.containerSelector)) {
+  const container = document.querySelector(config.containerSelector);
+  const loadMoreBtn = document.querySelector(config.loadMoreBtnSelector);
+  const allProducts = Array.from(container.children);
+  let visibleCount = config.itemsToLoad;
+
+  function init() {
+    allProducts.forEach(product => {
+      product.style.display = 'none';
+    });
+
+    updateVisibility();
+
+    if (allProducts.length <= config.itemsToLoad) {
+      loadMoreBtn.style.display = 'none';
+    }
+
+    loadMoreBtn.addEventListener('click', loadMoreProducts);
+  }
+
+  function updateVisibility() {
+    allProducts.forEach((product, index) => {
+      product.style.display = index < visibleCount ? 'flex' : 'none';
+    });
+
+    if (visibleCount >= allProducts.length) {
+      loadMoreBtn.style.display = 'none';
+    }
+  }
+
+  function loadMoreProducts() {
+    visibleCount += config.itemsToLoad;
+    updateVisibility();
+    if (document.querySelectorAll('.review__text')) {
+      updateText()
+    }
+  }
+
+  init();
+}
+if (document.querySelectorAll('.review__text')) {
+  const reviewTexts = document.querySelectorAll('.review__text');
+  const reviewMoreButtons = document.querySelectorAll('.review_more');
+
+  reviewTexts.forEach((textEl, index) => {
+      const moreButton = reviewMoreButtons[index];
+
+      // Сначала сбрасываем состояние
+      moreButton.style.display = 'none';
+      textEl.classList.remove('expanded');
+
+      if (textEl.offsetParent !== null) { 
+        if (textEl.scrollHeight > textEl.clientHeight) {
+          moreButton.style.display = 'block';
+          moreButton.textContent = 'Развернуть';
+        }
+      }
+
+      moreButton.addEventListener('click', function () {
+        if (textEl.classList.contains('expanded')) {
+          textEl.classList.remove('expanded');
+          moreButton.textContent = 'Развернуть';
+        } else {
+          textEl.classList.add('expanded');
+          moreButton.textContent = 'Свернуть';
+        }
+      });
+    });
+
+  function updateText() {
+    reviewTexts.forEach((textEl, index) => {
+      const moreButton = reviewMoreButtons[index];
+
+      if (textEl.offsetParent !== null) { 
+        if (textEl.scrollHeight > textEl.clientHeight) {
+          moreButton.style.display = 'block';
+          moreButton.textContent = 'Развернуть';
+        }
+      }
+
+      
+    });
+  };
+
+  updateText();
+}
+
+
+
+
+
