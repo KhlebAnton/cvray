@@ -15,7 +15,7 @@
     <nav class="nav_bottom">
         <div class="btn btn_square btn--menu"></div>
         <div class="btn btn_square btn--search"></div>
-        <div class="btn btn_square btn--user"  data-btn="auth"></div>
+        <div class="btn btn_square btn--user" data-btn="auth"></div>
         <div class=" btn btn_square btn--like">
             <div class="btn_square-count">
                 99
@@ -552,7 +552,7 @@
 
                     <label class="input_label">
                         <input type="text" class="phone-input" name="phone" required="" autocomplete="off">
-
+                        <span class="error_msg">*ошибка</span>
                     </label>
                     <button class="btn btn-primary btn--width">Заказать</button>
                     <p class="form_politick">
@@ -595,7 +595,7 @@
                 <form class="form">
                     <label class="input_label">
                         <input type="text" class="phone-input" name="phone" required="" autocomplete="off">
-
+                        <span class="error_msg">*ошибка</span>
                     </label>
                     <button class="btn btn-primary btn--width">Заказать</button>
                     <p class="form_politick">
@@ -809,8 +809,12 @@
                 </h2>
             </div>
             <div class="menu-content_main">
-                <form class="form">
-                    <input type="search" name="search" required placeholder="Введите ваш запрос, например розы">
+                 <form class="form">
+                    <label class="input_label ">
+                        <input type="search" name="search" required placeholder="Введите ваш запрос, например розы">
+                        <span class="error_msg">*ошибка</span>
+                    </label>
+
                     <button class="btn btn-primary btn--width">Искать</button>
                 </form>
 
@@ -835,7 +839,7 @@
                 </label>
                 <label class="input_label">
                     <input type="text" class="phone-input" name="phone" required="" autocomplete="off">
-
+                    <span class="error_msg">*ошибка</span>
                 </label>
                 <button class="btn btn-primary btn--width">Оформить заказ</button>
                 <p class="form_politick">
@@ -865,10 +869,12 @@
 
                 <label class="input_label ">
                     <input type="email" name="email" placeholder="Электронная почта" required>
+                    <span class="error_msg">*ошибка</span>
                 </label>
                 <label class="input_label">
                     <input type="password" class="pass" placeholder="Пароль" name="password" required>
                     <span class="password_forget" data-btn="password">Забыли пароль?</span>
+                    <span class="error_msg">*ошибка</span>
                 </label>
                 <div class="form_btns">
                     <button class="btn btn-primary btn--width">Войти</button>
@@ -907,7 +913,7 @@
                 </label>
                 <label class="input_label">
                     <input type="text" class="phone-input" name="phone" required="" autocomplete="off">
-
+                    <span class="error_msg">*ошибка</span>
                 </label>
                 <button class="btn btn-primary btn--width">Зарегистрироваться</button>
                 <p class="form_politick">

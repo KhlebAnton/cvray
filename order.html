@@ -104,11 +104,11 @@
                                 </label>
                                 <label class="input_label">
                                     <input type="text" class="phone-input" name="phone" required="" autocomplete="off">
-
+                                    <span class="error_msg">*ошибка ввода телефона</span>
                                 </label>
-                                <label class="input_label ">
+                                <label class="input_label">
                                     <input type="email" name="email" placeholder="Электронная почта" required="">
-
+                                    <span class="error_msg">*ошибка ввода почты</span>
                                 </label>
                                 <div class="checbox-group">
                                     <label class="check-label">
@@ -145,6 +145,7 @@
                                 <label class="input_label">
                                     <input type="text" class="phone-input" name="phoneRecipient" required=""
                                         placeholder="Телефон получателя" autocomplete="off">
+                                    <span class="error_msg">*ошибка ввода телефона</span>
 
                                 </label>
                             </div>
@@ -153,36 +154,48 @@
                             <h4 class="order_item-title">Доставка</h4>
                             <div class="order-item">
                                 <div class="accordion-container">
-                                    <div class="accordion-item accordion-item_input">
-                                        <div class="accordion-item_top">
-                                            <div class="delivery-display" data-value="">Способ доставки</div>
-                                            <input type="text" name="delivery" required>
-                                        </div>
-                                        <div class="accordion-item_hidden">
-                                            <div class="accordion-item_input-value" data-value="fast">Быстро</div>
-                                            <div class="accordion-item_input-value" data-value="other">Другая</div>
-                                        </div>
-                                    </div>
-                                    <div class="accordion-item accordion-item_input">
-                                        <div class="accordion-item_top">
-                                            <div class="delivery-display" data-value="">Город</div>
-                                            <input type="text" name="city" required>
-                                        </div>
-                                        <div class="accordion-item_hidden">
-                                            <div class="accordion-item_input-value" data-value="г. Ялта">г. Ялта</div>
-                                            <div class="accordion-item_input-value" data-value="г. Другой">г. Другой</div>
-                                        </div>
+                                    <label class="input_label">
+                                        <div class="accordion-item accordion-item_input">
+                                            <div class="accordion-item_top">
+                                                <div class="delivery-display" data-value="">Способ доставки</div>
+                                                <input type="text" name="delivery" required>
 
-                                    </div>
+                                            </div>
+                                            <div class="accordion-item_hidden">
+                                                <div class="accordion-item_input-value" data-value="fast">Быстро</div>
+                                                <div class="accordion-item_input-value" data-value="other">Другая</div>
+                                            </div>
+
+                                        </div>
+                                        <span class="error_msg">*Выберите способ доставки</span>
+                                    </label>
+                                    <label class="input_label">
+                                        <div class="accordion-item accordion-item_input">
+                                            <div class="accordion-item_top">
+                                                <div class="delivery-display" data-value="">Город</div>
+                                                <input type="text" name="city" required>
+                                            </div>
+                                            <div class="accordion-item_hidden">
+                                                <div class="accordion-item_input-value" data-value="г. Ялта">г. Ялта
+                                                </div>
+                                                <div class="accordion-item_input-value" data-value="г. Другой">г. Другой
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                         <span class="error_msg">*выберите город</span>
+                                    </label>
+
 
                                 </div>
-                                <label class="input_label ">
+                                <label class="input_label">
                                     <input type="text" name="adress" required="" placeholder="Улица, дом, кв/офис">
+                                    <span class="error_msg">*Заполните адрес</span>
                                 </label>
-                                <label class="input_label ">
+                                <label class="input_label">
                                     <input type="text" class="date-input" name="date" required=""
                                         placeholder="Дата доставки">
-                                    <span class="error_msg">*ошибка ввода имени</span>
+                                    <span class="error_msg">*ошибка ввода даты</span>
                                 </label>
                                 <div class="checbox-group">
                                     <label class="radio-label">
@@ -211,40 +224,40 @@
                         <div class="order-item_wrapper">
                             <h4 class="order_item-title">Способ оплаты</h4>
                             <div class="checbox-group">
-                                    <label class="radio-label">
-                                        <input type="radio" name="pay" checked="">
-                                        <div class="radio-marker"></div>
-                                        <span>
-                                            Картой онлайн
-                                        </span>
-                                    </label>
-                                    <label class="radio-label">
-                                        <input type="radio" name="pay" checked="true">
-                                        <div class="radio-marker"></div>
-                                        <span>
-                                            Наличными при получении
-                                        </span>
-                                    </label>
-                                </div>
+                                <label class="radio-label">
+                                    <input type="radio" name="pay" checked="">
+                                    <div class="radio-marker"></div>
+                                    <span>
+                                        Картой онлайн
+                                    </span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="pay" checked="true">
+                                    <div class="radio-marker"></div>
+                                    <span>
+                                        Наличными при получении
+                                    </span>
+                                </label>
+                            </div>
                         </div>
                         <div class="order-item_wrapper">
                             <h4 class="order_item-title">Фотоотчет</h4>
                             <div class="checbox-group">
-                                    <label class="radio-label">
-                                        <input type="radio" name="photo" checked="">
-                                        <div class="radio-marker"></div>
-                                        <span>
-                                            Нужен
-                                        </span>
-                                    </label>
-                                    <label class="radio-label">
-                                        <input type="radio" name="photo" checked="true">
-                                        <div class="radio-marker"></div>
-                                        <span>
-                                            Не нужен
-                                        </span>
-                                    </label>
-                                </div>
+                                <label class="radio-label">
+                                    <input type="radio" name="photo" checked="">
+                                    <div class="radio-marker"></div>
+                                    <span>
+                                        Нужен
+                                    </span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="photo" checked="true">
+                                    <div class="radio-marker"></div>
+                                    <span>
+                                        Не нужен
+                                    </span>
+                                </label>
+                            </div>
                         </div>
                     </div>
 
@@ -254,11 +267,12 @@
 
                     <div class="order_btn-wrapper">
                         <button class="btn btn-primary btn--width">Оформить заказ</button>
-                    <p class="form_politick">
-                    Нажимая Оформить заказ вы соглашаетесь с правилами <a href="#">Условий соглашения</a> и <a href="#">Политикой конфиденциальности</a>
-                </p>
+                        <p class="form_politick">
+                            Нажимая Оформить заказ вы соглашаетесь с правилами <a href="#">Условий соглашения</a> и <a
+                                href="#">Политикой конфиденциальности</a>
+                        </p>
                     </div>
-                    
+
                 </form>
             </div>
         </section>
@@ -861,8 +875,12 @@
                 </h2>
             </div>
             <div class="menu-content_main">
-                <form class="form">
-                    <input type="search" name="search" required placeholder="Введите ваш запрос, например розы">
+                 <form class="form">
+                    <label class="input_label ">
+                        <input type="search" name="search" required placeholder="Введите ваш запрос, например розы">
+                        <span class="error_msg">*ошибка</span>
+                    </label>
+
                     <button class="btn btn-primary btn--width">Искать</button>
                 </form>
 
@@ -1011,7 +1029,7 @@
         <div class="modal-content">
             <div class="modal-content__close"></div>
             <div class="order_modal">
-                <h3 >
+                <h3>
                     Ваш заказ успешно создан!
                 </h3>
                 <div class="order_data">
@@ -1025,30 +1043,31 @@
                     </div>
                     <div class="order_data-item">
                         <span>
-                           Адрес доставки
+                            Адрес доставки
                         </span>
                         <span class="order-data__adress">
-                           г. Ялта, ул. Ленина 45, кв. 32
+                            г. Ялта, ул. Ленина 45, кв. 32
                         </span>
                     </div>
                     <div class="order_data-item">
                         <span>
-                          Получатель
+                            Получатель
                         </span>
                         <span class="order-data__name">
-                           Анна
+                            Анна
                         </span>
                     </div>
                     <div class="order_data-item">
                         <span>
-                          Комментарий
+                            Комментарий
                         </span>
                         <span class="order-data__comment">
                             Спасибо тебе за все, что ты делаешь для нас (и сердечко нарисуйте в конце, пожалуйста)
                         </span>
                     </div>
                 </div>
-                <p class="help_text">Если возникли вопросы по заказу, можете обратиться к нам по телефону  <a href="tel:+79788024463">+7 (978) 802-44-63</a></p>
+                <p class="help_text">Если возникли вопросы по заказу, можете обратиться к нам по телефону <a
+                        href="tel:+79788024463">+7 (978) 802-44-63</a></p>
                 <div class="btn btn-thrid btn--width" data-btn="closeModal">Спасибо!</div>
             </div>
 

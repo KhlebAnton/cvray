@@ -988,11 +988,14 @@ body {
     position: relative;
 }
 
+.input_label.error .accordion-item_top {
+    border-color: #D76262;
+    color: #D76262;
+}
 .input_label.error input {
     border-color: #D76262;
     color: #D76262;
 }
-
 .input_label.error .error_msg {
     display: block;
 }
@@ -1521,8 +1524,18 @@ body {
     border: 1px solid #E9DDD9;
     max-width: 370px;
     width: 100%;
+    height: auto;
 }
-
+.product-card_old-price {
+    font-size: 18px;
+    color: #707076;
+    text-decoration: line-through;
+}
+.product-card_price-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 .review_card__user {
     width: 68px;
     height: 68px;
@@ -3643,7 +3656,7 @@ position: sticky;
 }
 .reviews_grid-container {
     display: grid;
-    align-items: start;
+   
     grid-template-columns: repeat(4,1fr);
     gap: 40px 20px;
 }
@@ -4438,7 +4451,7 @@ position: sticky;
     .product-card {
         gap: 10px;
     }
-
+    .product-card_old-price,
     .product-card_price,
     .product-card_title {
         font-size: 16px;

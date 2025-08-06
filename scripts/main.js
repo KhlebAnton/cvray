@@ -180,12 +180,12 @@ document.addEventListener('DOMContentLoaded', function () {
   // auth 
   document.querySelectorAll('[data-btn="auth"]').forEach(btn => {
     btn.addEventListener('click', () => {
-    openModal(modals.auth)
+      openModal(modals.auth)
+    })
   })
-  })
-  
-  
- 
+
+
+
   // regist
   document.querySelector('[data-btn="regist"]').addEventListener('click', () => {
     openModal(modals.regist)
@@ -223,6 +223,33 @@ document.addEventListener('DOMContentLoaded', function () {
   function validateName(name) {
     name = name.trim();
     return name.length >= 2 && /^[a-zA-Zа-яА-ЯёЁ\- ]+$/.test(name);
+  }
+  function validateEmail(email) {
+    if (!email) return false; // Проверка на пустое значение
+
+    // Удаляем пробелы в начале и конце
+    email = email.trim();
+
+    // Регулярное выражение для проверки email
+    const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+    // Дополнительные проверки
+    if (email.length > 254) return false; // Максимальная длина email
+    if (email.indexOf('..') !== -1) return false; // Две точки подряд
+    if (email.indexOf('@') === -1) return false; // Должен быть символ @
+
+    // Разделяем на локальную часть и домен
+    const parts = email.split('@');
+    if (parts.length !== 2) return false;
+
+    const local = parts[0];
+    const domain = parts[1];
+
+    // Проверка длины локальной части и домена
+    if (local.length > 64) return false;
+    if (domain.length > 253) return false;
+
+    return re.test(email.toLowerCase());
   }
   function validateDateInput(input) {
     const value = input.value;
@@ -276,18 +303,24 @@ document.addEventListener('DOMContentLoaded', function () {
   function showError(input, message) {
     const label = input.closest('.input_label');
     const errorMsg = label.querySelector('.error_msg');
-
+    if(!errorMsg) {
+      const errSpan = document.createElement('span');
+      errSpan.classList.add('error_msg');
+       errSpan.textContent = message;
+       label.appendChild(errSpan)
+    } else {
+       errorMsg.textContent = message;
+    }
     label.classList.add('error');
-    errorMsg.textContent = message;
-    errorMsg.style.display = 'block';
+   
+
   }
   // Скрыть ошибку
   function clearError(input) {
     const label = input.closest('.input_label');
-    const errorMsg = label.querySelector('.error_msg');
 
     label.classList.remove('error');
-    errorMsg.style.display = 'none';
+
   }
   // Инициализация Cleave.js для даты (маска ДД.ММ.ГГГГ)
   const dateInputs = document.querySelectorAll('.date-input');
@@ -305,62 +338,133 @@ document.addEventListener('DOMContentLoaded', function () {
     // });
   });
   document.querySelectorAll('form').forEach(form => {
+    form.noValidate = true; // Отключаем стандартную валидацию
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       let isFormValid = true;
 
-      // Проверка имени
-      const nameInput = this.querySelector('input[name="name"]');
-      if (nameInput) {
-        if (!validateName(nameInput.value)) {
-          showError(nameInput, '*ошибка ввода имени');
-          nameInput.value += '*';
+      // Проверка всех обязательных полей
+      const requiredInputs = this.querySelectorAll('input[required], textarea[required], select[required]');
+
+      requiredInputs.forEach(input => {
+        // Пропускаем чекбоксы и радиокнопки, так как у них своя логика проверки
+        if (input.type === 'checkbox' || input.type === 'radio') return;
+
+        // Проверка на пустое значение
+        if (!input.value.trim()) {
+          showError(input, input.getAttribute('data-error') || '*Это поле обязательно для заполнения');
           isFormValid = false;
         } else {
-          clearError(nameInput);
+          clearError(input);
+        }
+      });
+
+      // Специальная проверка для чекбокса "Я сам получу заказ"
+      const recipientCheckbox = this.querySelector('input[name="recipient"]');
+      if (recipientCheckbox) {
+        const nameRecipientInput = this.querySelector('input[name="nameRecipient"]');
+        const phoneRecipientInput = this.querySelector('input[name="phoneRecipient"]');
+
+        if (!recipientCheckbox.checked) {
+          // Если чекбокс не отмечен, проверяем поля получателя
+          if (!nameRecipientInput.value.trim()) {
+            showError(nameRecipientInput, '*Введите имя получателя');
+            isFormValid = false;
+          }
+
+          if (!phoneRecipientInput.value.trim()) {
+            showError(phoneRecipientInput, '*Введите телефон получателя');
+            isFormValid = false;
+          }
         }
       }
 
-      // Проверка даты
+      // Дополнительные проверки
+      const nameInput = this.querySelector('input[name="name"]');
+      if (nameInput && !validateName(nameInput.value)) {
+        showError(nameInput, '*ошибка ввода имени');
+        isFormValid = false;
+      }
+
       const dateInput = this.querySelector('.date-input');
-      if (dateInput) {
-        if (!validateDateInput(dateInput)) {
-          isFormValid = false;
-        }
+      if (dateInput && !validateDateInput(dateInput)) {
+        isFormValid = false;
       }
-
+      const emailInput = form.querySelector('input[type="email"]');
+      if (emailInput && !validateEmail(emailInput.value)) {
+        showError(emailInput, '*Некорректный email-адрес');
+        isFormValid = false;
+      }
+      // Если форма валидна, отправляем
       if (isFormValid) {
         if (form.querySelector('.success_form__content')) {
           form.classList.add('success_form');
         }
+
         if (form.classList.contains('order-form')) {
           const dateForm = {
-            nameClient: form.querySelector('input[name="recipient"]').checked ? form.querySelector('input[name="name"]').value : form.querySelector('input[name="nameRecipient"]').value,
+            nameClient: form.querySelector('input[name="recipient"]').checked ?
+              form.querySelector('input[name="name"]').value :
+              form.querySelector('input[name="nameRecipient"]').value,
             dateDelivery: form.querySelector('input[name="date"]').value,
-            adressDelivery: form.querySelector('input[name="city"]').value + ", " + form.querySelector('input[name="adress"]').value,
-            comment: form.querySelector('textarea[name="msg"]').value ? form.querySelector('textarea[name="msg"]').value : 'Нет комментария',
+            adressDelivery: form.querySelector('input[name="city"]').value + ", " +
+              form.querySelector('input[name="adress"]').value,
+            comment: form.querySelector('textarea[name="msg"]').value ?
+              form.querySelector('textarea[name="msg"]').value : 'Нет комментария',
           };
+
           modals.orderSucces.querySelector('.order-data__date').textContent = dateForm.dateDelivery;
           modals.orderSucces.querySelector('.order-data__adress').textContent = dateForm.adressDelivery;
           modals.orderSucces.querySelector('.order-data__name').textContent = dateForm.nameClient;
           modals.orderSucces.querySelector('.order-data__comment').textContent = dateForm.comment;
 
           openModal(modals.orderSucces);
-
         }
+
+        // Здесь можно добавить отправку формы, если нужно
+        // form.submit();
       }
     });
 
-    // Валидация имени при вводе
-    const nameInput = form.querySelector('input[name="name"]');
-    if (nameInput) {
-      nameInput.addEventListener('input', function () {
-        if (validateName(this.value)) {
-          clearError(this);
-        }
-      });
-    }
+    // Валидация при вводе и изменении
+    const inputs = form.querySelectorAll('input, textarea, select, .accordion-item_input');
+    inputs.forEach(input => {
+      if (input.tagName === 'INPUT' || input.tagName === 'TEXTAREA' || input.tagName === 'SELECT') {
+        input.addEventListener('input', function () {
+          if (this.value.trim()) {
+            clearError(this);
+          }
+        });
+      }
+
+      if (input.classList.contains('accordion-item_input')) {
+        const hiddenInput = input.querySelector('input[type="text"]');
+
+        const valueElements = input.querySelectorAll('.accordion-item_input-value');
+        valueElements.forEach(item => {
+          item.addEventListener('click', function () {
+
+            clearError(hiddenInput);
+
+          });
+        });
+
+
+      }
+    });
   });
+
+
+
+  function clearError(input) {
+    const errorMsg = input.closest('.input_label')?.querySelector('.error_msg');
+    if (errorMsg) {
+      input.closest('.input_label').classList.remove('error');
+    }
+  }
+
+
   // category
   // Получаем все элементы табов
   const tabs = document.querySelectorAll('.product-filter__tab');
