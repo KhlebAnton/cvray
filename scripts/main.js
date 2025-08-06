@@ -302,17 +302,18 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   function showError(input, message) {
     const label = input.closest('.input_label');
+    label.scrollIntoView({block: 'center', behavior: 'smooth' });
     const errorMsg = label.querySelector('.error_msg');
-    if(!errorMsg) {
+    if (!errorMsg) {
       const errSpan = document.createElement('span');
       errSpan.classList.add('error_msg');
-       errSpan.textContent = message;
-       label.appendChild(errSpan)
+      errSpan.textContent = message;
+      label.appendChild(errSpan)
     } else {
-       errorMsg.textContent = message;
+      errorMsg.textContent = message;
     }
     label.classList.add('error');
-   
+
 
   }
   // Скрыть ошибку
