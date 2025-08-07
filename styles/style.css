@@ -725,8 +725,7 @@ body {
     gap: 15px;
     align-items: center;
     justify-content: center;
-    background: #FFFFFFCC;
-    backdrop-filter: blur(10px);
+    background: #ffffff;
     z-index: 10;
 
 }
